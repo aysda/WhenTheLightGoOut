@@ -9145,6 +9145,7 @@ GameObject:
   - component: {fileID: 1897424482}
   - component: {fileID: 1897424486}
   - component: {fileID: 1897424487}
+  - component: {fileID: 1897424488}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -9284,7 +9285,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6a528f888f2d9438f15e500ae7dead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 4
+  moveSpeed: 3
+--- !u!114 &1897424488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897424480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c72443c9a31484a85a8d7fe6432989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseLook
+  mouseSensitivity: 30
+  cameraTransform: {fileID: 429133541}
 --- !u!1001 &1898762052
 PrefabInstance:
   m_ObjectHideFlags: 0
