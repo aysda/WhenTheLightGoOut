@@ -5,7 +5,8 @@ public class TrashDetector : MonoBehaviour
     public float interactDistance = 3f;
     public LayerMask trashLayer;
 
-    TrashOutline currentTrash;
+    TrashOutline currentOutline;
+    TrashCollect currentCollect;
 
     void Update()
     {
@@ -14,29 +15,37 @@ public class TrashDetector : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactDistance, trashLayer))
         {
-            TrashOutline trash = hit.collider.GetComponent<TrashOutline>();
+            TrashOutline outline = hit.collider.GetComponent<TrashOutline>();
+            TrashCollect collect = hit.collider.GetComponent<TrashCollect>();
 
-            if (trash != null)
+            if (outline != null)
             {
-                if (currentTrash != trash)
+                if (currentOutline != outline)
                 {
-                    ClearCurrentTrash();
-                    currentTrash = trash;
-                    currentTrash.EnableEmission();
+                    ClearCurrent();
+
+                    currentOutline = outline;
+                    currentCollect = collect;
+
+                    currentOutline.EnableEmission();
+                    currentCollect?.BeginCollect();
                 }
                 return;
             }
         }
 
-        ClearCurrentTrash();
+        ClearCurrent();
     }
 
-    void ClearCurrentTrash()
+    void ClearCurrent()
     {
-        if (currentTrash != null)
+        if (currentOutline != null)
         {
-            currentTrash.DisableEmission();
-            currentTrash = null;
+            currentOutline.DisableEmission();
+            currentCollect?.CancelCollect();
         }
+
+        currentOutline = null;
+        currentCollect = null;
     }
 }
