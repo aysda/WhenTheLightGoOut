@@ -20,6 +20,7 @@ public class TrashDetector : MonoBehaviour
 
             if (outline != null)
             {
+                // Yeni çöpe bakıyorsak
                 if (currentOutline != outline)
                 {
                     ClearCurrent();
@@ -28,8 +29,13 @@ public class TrashDetector : MonoBehaviour
                     currentCollect = collect;
 
                     currentOutline.EnableEmission();
+                }
+                else
+                {
+                    // Aynı çöpteyiz ama toplama iptal edilmiş olabilir
                     currentCollect?.BeginCollect();
                 }
+
                 return;
             }
         }
